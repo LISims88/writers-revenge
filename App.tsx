@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import StoryListScreen from "./screens/StoryListScreen";
+import NewStoryScreen from "./screens/NewStoryScreen";
+import WritingScreen from "./screens/WritingScreen";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Stories"
+          component={StoryListScreen}
+          options={{ title: "Writer’s Revenge" }}
+        />
+        <Stack.Screen
+          name="NewStory"
+          component={NewStoryScreen}
+          options={{ title: "New Story" }}
+        />
+        <Stack.Screen
+          name="Writing"
+          component={WritingScreen}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
